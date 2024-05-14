@@ -9,14 +9,18 @@ export const getUserServices = async () : Promise<IUsers[]>  => {
     return users
 };
 
+export const getUserServicesById = async (id: number) : Promise<IUsers | undefined> => {
+    return users.find((user: IUsers) => user.id === id);
+}
+
 export const createdUserServices = async (userData: UserDto) : Promise<IUsers> => {
     const newUser: IUsers = {
         id,
         name: userData.name,
         email: userData.email,
-        telefone: userData.telefone,
-        password: userData.password,
-        active: userData.active 
+        birthDate: userData.birthDate,
+        nDni: userData.nDni,
+        credentialsId: userData.credentialsId
     }
     users.push(newUser);
     id++;

@@ -1,4 +1,11 @@
 {
-  "cSpell.words": ["postgres", "telefone", "typeorm"],
+  "cSpell.words": [
+    "codepaths",
+    "Jaimillo",
+    "postgres",
+    "telefone",
+    "tsbuildinfo",
+    "typeorm"
+  ],
   "cSpell.enableFiletypes": ["json"]
 }

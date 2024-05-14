@@ -1,9 +1,11 @@
+import ICredentials from "../interfaces/ICredentials";
+
 interface UserDto {
     name: string;
     email: string;
-    telefone: number;
-    password: string;
-    active: boolean;
+    birthDate: string;
+    nDni: number;
+    credentialsId: ICredentials;
 }
 
 export default UserDto;

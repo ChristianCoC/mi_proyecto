@@ -1,0 +1,31 @@
+GET http://localhost:3000/users
+###
+
+GET http://localhost:3000/users/1
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "Christian Siles",
+    "email": "christian@siles",
+    "birthDate": "27/03/1981",
+    "nDni": 12345678,
+    "credentialsId": {
+        "username": "usertwo",
+        "password": "passtwo"
+    }
+}
+###
+
+PUT http://localhost:3000/users/3
+Content-Type: application/json
+
+{
+    "name": "Christian Siles",
+    "email": "christian@siles",
+    "birthDate": "27/03/1981"
+}
+###

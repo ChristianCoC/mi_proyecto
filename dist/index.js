@@ -8,7 +8,7 @@ const envs_1 = require("./config/envs");
 require("reflect-metadata");
 const data_source_1 = require("./config/data-source");
 data_source_1.AppDataSource.initialize().then((res) => {
-    console.log("Conexion a la base de datos establecida");
+    console.log("Conexión a la base de datos establecida");
     server_1.default.listen(envs_1.PORT, () => {
         console.log(`Servidor escuchando en el puerto ${envs_1.PORT}`);
     });
