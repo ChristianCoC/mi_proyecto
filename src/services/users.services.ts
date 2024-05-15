@@ -1,30 +1,26 @@
 import IUsers from "../interfaces/IUsers";
 import UserDto from "../dto/users.dto";
+import { AppDataSource } from "../config/data-source";
+import { User } from "../entity/User";
 
 let users: IUsers[] = [];
 
 let id = 1;
 
-export const getUserServices = async () : Promise<IUsers[]>  => {
+export const getUserServices = async () => {
+    const users = await AppDataSource.getRepository(User).find();
     return users
 };
 
-export const getUserServicesById = async (id: number) : Promise<IUsers | undefined> => {
-    return users.find((user: IUsers) => user.id === id);
+export const getUserServicesById = async (id: number) => {
+    const user = await AppDataSource.getRepository(User).findOneBy({id:id});
+    return user
 }
 
-export const createdUserServices = async (userData: UserDto) : Promise<IUsers> => {
-    const newUser: IUsers = {
-        id,
-        name: userData.name,
-        email: userData.email,
-        birthDate: userData.birthDate,
-        nDni: userData.nDni,
-        credentialsId: userData.credentialsId
-    }
-    users.push(newUser);
-    id++;
-    return newUser;
+export const createdUserServices = async (userData: User) => {
+    const user = await AppDataSource.getRepository(User).create(userData);
+    const result = await AppDataSource.getRepository(User).save(user);
+    return user;
 };
 
 export const updatedUserServices = async (id: number, newData: Partial<IUsers>) : Promise<IUsers | undefined> => {

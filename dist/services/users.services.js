@@ -9,25 +9,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletedUserServices = exports.updatedUserServices = exports.createdUserServices = exports.getUserServices = void 0;
+exports.deletedUserServices = exports.updatedUserServices = exports.createdUserServices = exports.getUserServicesById = exports.getUserServices = void 0;
+const data_source_1 = require("../config/data-source");
+const User_1 = require("../entity/User");
 let users = [];
 let id = 1;
 const getUserServices = () => __awaiter(void 0, void 0, void 0, function* () {
+    const users = yield data_source_1.AppDataSource.getRepository(User_1.User).find();
     return users;
 });
 exports.getUserServices = getUserServices;
+const getUserServicesById = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    return users.find((user) => user.id === id);
+});
+exports.getUserServicesById = getUserServicesById;
 const createdUserServices = (userData) => __awaiter(void 0, void 0, void 0, function* () {
-    const newUser = {
-        id,
-        name: userData.name,
-        email: userData.email,
-        telefone: userData.telefone,
-        password: userData.password,
-        active: userData.active
-    };
-    users.push(newUser);
-    id++;
-    return newUser;
+    const user = yield data_source_1.AppDataSource.getRepository(User_1.User).create(userData);
+    const result = yield data_source_1.AppDataSource.getRepository(User_1.User).save(user);
+    return user;
 });
 exports.createdUserServices = createdUserServices;
 const updatedUserServices = (id, newData) => __awaiter(void 0, void 0, void 0, function* () {

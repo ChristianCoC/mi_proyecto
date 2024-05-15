@@ -1,15 +1,16 @@
 import { Request, Response } from "express";
 import { getUserServices, createdUserServices, updatedUserServices, deletedUserServices, getUserServicesById } from "../services/users.services";
 import IUsers from "../interfaces/IUsers";
+import { User } from "../entity/User";
 
 export const createdUsersControllers = async (req: Request, res: Response) => {
-    const { name, email, birthDate, nDni, credentialsId } = req.body;
-    const newUser: IUsers = await createdUserServices({ name, email, birthDate, nDni, credentialsId });
+    const { id, name, email, birthDate, nDni, credential } = req.body;
+    const newUser: User = await createdUserServices({ id, name, email, birthDate, nDni, credential });
     res.status(201).json(newUser);
 };
 
 export const getUsersControllers = async (req: Request, res: Response) => {
-    const users: IUsers[] = await getUserServices();
+    const users: User[] = await getUserServices();
     res.status(200).json(users);
 };
 
@@ -19,7 +20,7 @@ export const getUsersControllersById = async (req: Request, res: Response) => {
     res.status(200).json(user);
 }
 
-export const updatedUsersControllers = async (req: Request, res: Response) => {
+export const updatedUsersControllers = async (req: Request, res: Response)  => {
     const userId = parseInt(req.params.id);
     const newData = req.body;
     const updateUser = await updatedUserServices(userId, newData);

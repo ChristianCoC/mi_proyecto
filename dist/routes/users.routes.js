@@ -9,6 +9,7 @@ const authentication_1 = __importDefault(require("../middlewares/authentication"
 const router = (0, express_1.Router)();
 router.post("/users", users_controllers_1.createdUsersControllers);
 router.get("/users", authentication_1.default, users_controllers_1.getUsersControllers);
+router.get("/users/:id", users_controllers_1.getUsersControllersById);
 router.put("/users/:id", users_controllers_1.updatedUsersControllers);
 router.delete("/users/:id", users_controllers_1.deletedUsersControllers);
 exports.default = router;
