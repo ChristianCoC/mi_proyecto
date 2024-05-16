@@ -20,7 +20,8 @@ const getUserServices = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getUserServices = getUserServices;
 const getUserServicesById = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    return users.find((user) => user.id === id);
+    const user = yield data_source_1.AppDataSource.getRepository(User_1.User).findOneBy({ id: id });
+    return user;
 });
 exports.getUserServicesById = getUserServicesById;
 const createdUserServices = (userData) => __awaiter(void 0, void 0, void 0, function* () {

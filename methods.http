@@ -1,30 +1,71 @@
-GET http://localhost:3500/users
+GET http://localhost:3000/users
+token: authenticated
 ###
 
-GET http://localhost:3500/users/7
+GET http://localhost:3000/users/7
 ###
 
-POST http://localhost:3500/users
+POST http://localhost:3000/users
 Content-Type: application/json
 
 {
+    "name": "Sammy",
+    "email": "sammy@castaño",
+    "birthDate": "02/01/1961",
+    "nDni": 56789012,
+    "credential": {
+        "username": "usercero",
+        "password": "passcero"
+      }
+}
+###
+
+PUT http://localhost:3000/users/1
+Content-Type: application/json
+
+{
+    "id": 1,
     "name": "Melisa Siles",
     "email": "melisa@siles",
     "birthDate": "23/04/2005",
     "nDni": 34567890,
     "credential": {
-        "username": "userotree",
-        "password": "passtree"
+      "id": 1,
+      "username": "useruno",
+      "password": "passuno"
     }
 }
 ###
+DELETE http://localhost:3000/users/10
+###
 
-PUT http://localhost:3500/users/7
+// PETICIONES TURNOS
+
+GET http://localhost:3000/turns
+###
+
+POST http://localhost:3000/turns
 Content-Type: application/json
 
 {
-    "name": "Melisa Siles",
-    "email": "melu@siles",
-    "birthDate": "23/04/2005"
+    "date": "16/05/2024",
+    "time": "02:12",
+    "status": "Confirmado"
 }
+###
+
+GET http://localhost:3000/turns/1
+###
+
+PUT http://localhost:3000/turns/1
+Content-Type: application/json
+
+{
+    "date": "16/05/2024",
+    "time": "02:12",
+    "status": "Cancelado"
+}
+###
+
+DELETE http://localhost:3000/turns/1
 ###

@@ -1,6 +1,7 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { User } from "../entity/User"
+import { Turns } from "../entity/Turns";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -11,7 +12,10 @@ export const AppDataSource = new DataSource({
     database: "mi_proyecto",
     synchronize: true,
     logging: false,
-    entities: [User],
+    entities: [User, Turns],
     migrations: [],
     subscribers: [],
-})
+});
+
+export const UserModel = AppDataSource.getRepository(User)
+export const TurnModel = AppDataSource.getRepository(Turns)

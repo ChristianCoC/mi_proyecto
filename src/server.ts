@@ -1,9 +1,11 @@
 import express from 'express';
-import router from './routes/users.routes';
+import routerUsers from './routes/users.routes';
+import routerTurns from './routes/turns.routes';
 
 const server = express();
 
 server.use(express.json());
-server.use(router);
+server.use(routerUsers);
+server.use(routerTurns);
 
 export default server;
