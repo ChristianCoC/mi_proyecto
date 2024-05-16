@@ -3,8 +3,8 @@ import { getUserServices, createdUserServices, getUserServicesById, updatedUserS
 import { User } from "../entity/User";
 
 export const createdUsersControllers = async (req: Request, res: Response) => {
-    const { id, name, email, birthDate, nDni, credential } = req.body;
-    const newUser: User = await createdUserServices({ id, name, email, birthDate, nDni, credential });
+    const { id, name, email, birthDate, nDni, credential, turns } = req.body;
+    const newUser: User = await createdUserServices({ id, name, email, birthDate, nDni, credential, turns});
     res.status(201).json(newUser);
 };
 

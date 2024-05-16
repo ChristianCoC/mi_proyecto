@@ -20,7 +20,7 @@ export class Turns {
     })
     time: string;
 
-    @PrimaryGeneratedColumn()
+    @Column()
     userId: number;
 
     @Column({

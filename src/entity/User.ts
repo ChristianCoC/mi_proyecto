@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm"
 import { Credential } from "./Credential"
+import { Turns } from "./Turns"
 
 @Entity({
    name: "users"
@@ -38,4 +39,8 @@ export class User {
     )
     credential: Credential
 
+    @OneToOne(() => Turns)
+    @JoinColumn()
+        turns: Turns 
+    
 }

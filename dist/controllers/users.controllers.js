@@ -30,14 +30,16 @@ const getUsersControllersById = (req, res) => __awaiter(void 0, void 0, void 0, 
 exports.getUsersControllersById = getUsersControllersById;
 const updatedUsersControllers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = parseInt(req.params.id);
-    const newData = req.body;
-    const updateUser = yield (0, users_services_1.updatedUserServices)(userId, newData);
-    res.status(200).json(updateUser);
+    const updatedUser = yield (0, users_services_1.updatedUserServices)(userId, req.body);
+    if (!updatedUser) {
+        res.status(404).send("Usuario no encontrado");
+    }
+    res.status(200).json(updatedUser);
 });
 exports.updatedUsersControllers = updatedUsersControllers;
 const deletedUsersControllers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userId = parseInt(req.params.id);
     yield (0, users_services_1.deletedUserServices)(userId);
-    res.status(200).json({ message: "User deleted successfully" });
+    res.status(200).send("Usuario eliminado exitosamente");
 });
 exports.deletedUsersControllers = deletedUsersControllers;

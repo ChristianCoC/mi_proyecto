@@ -2,7 +2,11 @@ import { UserModel } from "../config/data-source";
 import { User } from "../entity/User";
 
 export const getUserServices = async (): Promise<User[]> => {
-    const users = await UserModel.find();
+    const users = await UserModel.find({
+        relations: {
+            turns: true,
+        },
+    });
     return users
 };
 

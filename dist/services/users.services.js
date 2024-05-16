@@ -11,37 +11,36 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletedUserServices = exports.updatedUserServices = exports.createdUserServices = exports.getUserServicesById = exports.getUserServices = void 0;
 const data_source_1 = require("../config/data-source");
-const User_1 = require("../entity/User");
-let users = [];
-let id = 1;
 const getUserServices = () => __awaiter(void 0, void 0, void 0, function* () {
-    const users = yield data_source_1.AppDataSource.getRepository(User_1.User).find();
+    const users = yield data_source_1.UserModel.find();
     return users;
 });
 exports.getUserServices = getUserServices;
 const getUserServicesById = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield data_source_1.AppDataSource.getRepository(User_1.User).findOneBy({ id: id });
+    const user = yield data_source_1.UserModel.findOneBy({ id: id });
     return user;
 });
 exports.getUserServicesById = getUserServicesById;
 const createdUserServices = (userData) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield data_source_1.AppDataSource.getRepository(User_1.User).create(userData);
-    const result = yield data_source_1.AppDataSource.getRepository(User_1.User).save(user);
+    const user = yield data_source_1.UserModel.create(userData);
+    const result = yield data_source_1.UserModel.save(user);
     return user;
 });
 exports.createdUserServices = createdUserServices;
-const updatedUserServices = (id, newData) => __awaiter(void 0, void 0, void 0, function* () {
-    const userIndex = users.findIndex((user) => user.id === id);
-    if (userIndex === -1) {
-        return undefined;
+const updatedUserServices = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield data_source_1.UserModel.findOneBy({ id: id });
+    if (!user) {
+        return null;
     }
-    users[userIndex] = Object.assign(Object.assign({}, users[userIndex]), newData);
-    return users[userIndex];
+    const updatedUser = yield data_source_1.UserModel.merge(user, data);
+    return yield data_source_1.UserModel.save(updatedUser);
 });
 exports.updatedUserServices = updatedUserServices;
 const deletedUserServices = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    users = users.filter((user) => {
-        return user.id !== id;
-    });
+    const user = yield data_source_1.UserModel.findOneBy({ id: id });
+    if (!user) {
+        return null;
+    }
+    return yield data_source_1.UserModel.remove(user);
 });
 exports.deletedUserServices = deletedUserServices;
