@@ -9,13 +9,13 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "name": "Sammy",
-    "email": "sammy@castaño",
-    "birthDate": "02/01/1961",
-    "nDni": 56789012,
+    "name": "Christian",
+    "email": "christian@siles",
+    "birthDate": "27/03/1981",
+    "nDni": 12345678,
     "credential": {
-        "username": "usercero",
-        "password": "passcero"
+        "username": "useruno",
+        "password": "passuno"
       }
 }
 ###
@@ -24,15 +24,15 @@ PUT http://localhost:3000/users/1
 Content-Type: application/json
 
 {
-    "id": 1,
-    "name": "Melisa Siles",
-    "email": "melisa@siles",
-    "birthDate": "23/04/2005",
-    "nDni": 34567890,
+    "id": 9,
+    "name": "Victoria Montaño",
+    "email": "victoria@montaño",
+    "birthDate": "12/01/1961",
+    "nDni": 56789012,
     "credential": {
-      "id": 1,
-      "username": "useruno",
-      "password": "passuno"
+      "id": 9,
+      "username": "usercinco",
+      "password": "passcinco"
     }
 }
 ###
@@ -48,8 +48,8 @@ POST http://localhost:3000/turns
 Content-Type: application/json
 
 {
-    "date": "26/05/2024",
-    "time": "12:12",
+    "date": "19/05/2024",
+    "time": "12:00",
     "status": "Confirmado",
     "userId": 1
 }
@@ -68,5 +68,5 @@ Content-Type: application/json
 }
 ###
 
-DELETE http://localhost:3000/turns/1
+DELETE http://localhost:3000/turns/3
 ###

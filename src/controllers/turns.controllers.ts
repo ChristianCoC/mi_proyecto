@@ -8,8 +8,8 @@ export const getTurnsControllers = async (req: Request, res: Response) => {
 };
 
 export const createdTurnsControllers = async (req: Request, res: Response) => {
-    const { id, date, time, userId, status } = req.body;
-    const newTurn: Turns = await createdTurnsServices({ id, date, time, userId, status });
+    const { id, date, time, userId, status, user } = req.body;
+    const newTurn: Turns = await createdTurnsServices({ id, date, time, userId, status, user });
     res.status(201).json(newTurn);
 };
 

@@ -17,8 +17,8 @@ const getTurnsControllers = (req, res) => __awaiter(void 0, void 0, void 0, func
 });
 exports.getTurnsControllers = getTurnsControllers;
 const createdTurnsControllers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id, date, time, userId, status } = req.body;
-    const newTurn = yield (0, turns_services_1.createdTurnsServices)({ id, date, time, userId, status });
+    const { id, date, time, userId, status, user } = req.body;
+    const newTurn = yield (0, turns_services_1.createdTurnsServices)({ id, date, time, userId, status, user });
     res.status(201).json(newTurn);
 });
 exports.createdTurnsControllers = createdTurnsControllers;

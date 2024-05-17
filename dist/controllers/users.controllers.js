@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletedUsersControllers = exports.updatedUsersControllers = exports.getUsersControllersById = exports.getUsersControllers = exports.createdUsersControllers = void 0;
 const users_services_1 = require("../services/users.services");
 const createdUsersControllers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id, name, email, birthDate, nDni, credential } = req.body;
-    const newUser = yield (0, users_services_1.createdUserServices)({ id, name, email, birthDate, nDni, credential });
+    const { id, name, email, birthDate, nDni, credential, turns } = req.body;
+    const newUser = yield (0, users_services_1.createdUserServices)({ id, name, email, birthDate, nDni, credential, turns });
     res.status(201).json(newUser);
 });
 exports.createdUsersControllers = createdUsersControllers;

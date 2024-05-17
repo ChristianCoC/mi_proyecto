@@ -2,7 +2,11 @@ import { TurnModel, UserModel } from "../config/data-source";
 import { Turns } from "../entity/Turns";
 
 export const getTurnsServices = async (): Promise<Turns[]> => {
-    const turns = await TurnModel.find();
+    const turns = await TurnModel.find({
+        relations: {
+            user: true
+        }
+    });
     return turns
 };
 
@@ -11,14 +15,14 @@ export const createdTurnsServices = async (data: Turns): Promise<Turns> => {
     const result = await TurnModel.save(turn);
 
     const user = await UserModel.findOneBy({ id: data.userId })
+
     if (user) {
-        user.turns = turn
-        await UserModel.save(user)
-    } else {
-        throw new Error("User not found")
+        turn.user = user;
+        await TurnModel.save(turn);
     }
 
     return turn
+        
 };
 
 export const getTurnsServicesById = async (id: number): Promise<Turns | null> => {

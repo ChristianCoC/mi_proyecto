@@ -12,7 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletedUserServices = exports.updatedUserServices = exports.createdUserServices = exports.getUserServicesById = exports.getUserServices = void 0;
 const data_source_1 = require("../config/data-source");
 const getUserServices = () => __awaiter(void 0, void 0, void 0, function* () {
-    const users = yield data_source_1.UserModel.find();
+    const users = yield data_source_1.UserModel.find({
+        relations: {
+            turns: true
+        }
+    });
     return users;
 });
 exports.getUserServices = getUserServices;

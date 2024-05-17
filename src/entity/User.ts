@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany } from "typeorm"
 import { Credential } from "./Credential"
 import { Turns } from "./Turns"
 
@@ -39,8 +39,7 @@ export class User {
     )
     credential: Credential
 
-    @OneToOne(() => Turns)
-    @JoinColumn()
-        turns: Turns 
+    @OneToMany(() => Turns, (turns) => turns.user)
+    turns: Turns[] 
     
 }

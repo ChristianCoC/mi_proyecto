@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { User } from "./User";
 
 @Entity({
     name: "turns"
@@ -28,4 +29,8 @@ export class Turns {
         length: 50
     })
     status: string;
+
+    @ManyToOne(() => User, (user) => user.turns)
+    @JoinColumn({ name: "userId" })
+    user: User;
 }

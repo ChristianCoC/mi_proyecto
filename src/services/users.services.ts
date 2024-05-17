@@ -4,8 +4,8 @@ import { User } from "../entity/User";
 export const getUserServices = async (): Promise<User[]> => {
     const users = await UserModel.find({
         relations: {
-            turns: true,
-        },
+            turns: true
+        }
     });
     return users
 };
